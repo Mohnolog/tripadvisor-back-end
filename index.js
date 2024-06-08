@@ -41,9 +41,13 @@ app.post("/form", async (req, res) => {
 
     res.status(200).json(response);
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
     res.status(500).json({ message: error.message });
   }
+});
+
+app.all("*", (req, res) => {
+  return res.status(404).json("Not found");
 });
 
 app.listen(process.env.PORT || 3000, () => {
